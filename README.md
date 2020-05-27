@@ -20,16 +20,15 @@ MFA authentication for aws-cli
 
 ## Use
 
-
 ### Get started
 
 - Clone repo
 - `cd aws-cli-mfa`
 - `npm i` to install dependencies
 
-### Run the configuration script
 
-- Run `node config`
+
+### Run the configuration script
 
 ```shell
 $ node config --profile awsprofile --mfa arn:aws:iam::000000000000:mfa/account
@@ -39,6 +38,8 @@ $ node config --profile awsprofile --mfa arn:aws:iam::000000000000:mfa/account
 }
 awc-cli-mfa configured! Ready to use.
 ```
+
+
 
 ### Run MFA script
 
