@@ -32,6 +32,12 @@ MFA authentication for aws-cli
 
 ```shell
 $ node config --profile awsprofile --mfa arn:aws:iam::000000000000:mfa/account
+```
+
+- You will get the the json configuration as a response
+
+```shell
+$ node config --profile awsprofile --mfa arn:aws:iam::000000000000:mfa/account
 {
   "profile": "awsprofile",
   "mfa_device_arn": "arn:aws:iam::000000000000:mfa/account"
