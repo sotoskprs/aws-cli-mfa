@@ -1,10 +1,10 @@
-// Dependencies
-const homedir = require('os').homedir()
+'use strict';
+const fs = require('fs')
 const path = require('path')
+const homedir = require('os').homedir()
 const { exec } = require('child_process')
-const writeFile = require('fs').writeFile
-
-const readline = require("readline");
+const config = require("./config.json")
+const readline = require("readline")
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -13,22 +13,18 @@ const rl = readline.createInterface({
 // Constants
 const awsFolder = '.aws'
 const authFileName = 'credentials'
-const fullPath = path.join(homedir, awsFolder, authFileName)
+const fullPath = config.path || path.join(homedir, awsFolder, authFileName)
 
-// Config
-const profile = "codecandy"
-const mfa_device_arn = "arn:aws:iam::228622503093:mfa/sotiris@ktisis.co"
-
-
-const xxx = rl.question("MFA code: ", function (mfa_code) {
+// Input MFA code
+rl.question("MFA code: ", function (mfa_code) {
 
   // Command template
   const command = `\
-  aws sts get-session-token \
-  --profile ${profile} \
-  --serial-number ${mfa_device_arn} \
-  --token-code ${mfa_code} \
-  --output json`
+aws sts get-session-token \
+--profile ${config.profile} \
+--serial-number ${config.mfa_device_arn} \
+--token-code ${mfa_code} \
+--output json`
 
   // Running the command
   exec(command, (err, stdout, stderr) => {
@@ -37,15 +33,15 @@ const xxx = rl.question("MFA code: ", function (mfa_code) {
     if (err) {
       switch (err.code) {
         case 254:
-          console.error("MultiFactorAuthentication failed with invalid MFA one time pass code");
-          process.exit(1);
+          console.error("MultiFactorAuthentication failed with invalid MFA one time pass code")
+          process.exit(1)
         case 252:
-          console.error("Parameter validation failed: Invalid length for parameter TokenCode, value: 3, valid range: 6-inf");
-          process.exit(1);
+          console.error("Parameter validation failed: Invalid length for parameter TokenCode, value: 3, valid range: 6-inf")
+          process.exit(1)
 
         default:
-          console.error(err);
-          process.exit(1);
+          console.error(err)
+          process.exit(1)
       }
     }
 
@@ -63,12 +59,9 @@ aws_session_token = ${ data['Credentials']['SessionToken']}
     
 
     // Writing contetns to file
-    writeFile(fullPath, file_contents, (err) => {
+    fs.writeFile(fullPath, file_contents, (err) => {
       if (err) console.error(err)
-      process.exit(0);
+      process.exit(0)
     })
-  });
-
-  
-});
-
+  })
+})
