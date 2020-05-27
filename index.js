@@ -1,73 +1,74 @@
-const AWS = require('aws-sdk')
+// Dependencies
 const homedir = require('os').homedir()
 const path = require('path')
-const { exec } = require('child_process');
-writeFile = require('fs').writeFile;
+const { exec } = require('child_process')
+const writeFile = require('fs').writeFile
 
-const sts = new AWS.STS();
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
 
 // Constants
 const awsFolder = '.aws'
 const authFileName = 'credentials'
 const fullPath = path.join(homedir, awsFolder, authFileName)
 
-// console.log(fullPath)
-
-
 // Config
 const profile = "codecandy"
-const aws_access_key_id = "AKIATKOXWRS2TPH2TTU3"
-const aws_secret_access_key = "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"
 const mfa_device_arn = "arn:aws:iam::228622503093:mfa/sotiris@ktisis.co"
-const mfa_code = "407901"
 
-// var params = {
-//   DurationSeconds: 3600,
-//   SerialNumber: "arn:aws:iam::228622503093:mfa/sotiris@ktisis.co",
-//   TokenCode: "123456"
-// }
 
-const command = `\
-aws sts get-session-token \
---profile ${profile} \
---serial-number ${mfa_device_arn} \
---token-code ${mfa_code} \
---output json`
+const xxx = rl.question("MFA code: ", function (mfa_code) {
 
-// sts.getSessionToken(params, (err, data) => {
-//   if (err) console.log(err, err.stack);
-//   else     console.log(data);
-// })
+  // Command template
+  const command = `\
+  aws sts get-session-token \
+  --profile ${profile} \
+  --serial-number ${mfa_device_arn} \
+  --token-code ${mfa_code} \
+  --output json`
 
-exec(command, (err, stdout, stderr) => {
-  if (err) {
-    switch (err.code) {
-      case 254:
-        console.error("MultiFactorAuthentication failed with invalid MFA one time pass code");
-        break;
+  // Running the command
+  exec(command, (err, stdout, stderr) => {
 
-      default:
-        console.error(err);
-        break;
+    // Command error handling
+    if (err) {
+      switch (err.code) {
+        case 254:
+          console.error("MultiFactorAuthentication failed with invalid MFA one time pass code");
+          process.exit(1);
+        case 252:
+          console.error("Parameter validation failed: Invalid length for parameter TokenCode, value: 3, valid range: 6-inf");
+          process.exit(1);
+
+        default:
+          console.error(err);
+          process.exit(1);
+      }
     }
-  }
 
-  const data = JSON.parse(stdout)
+    // If no error, parse json
+    const data = JSON.parse(stdout)
 
-  console.log(data);
+    // File contents template
+    const file_contents = `[default]
+aws_access_key_id = ${ data['Credentials']['AccessKeyId']}
+aws_secret_access_key = ${ data['Credentials']['SecretAccessKey']}
+aws_session_token = ${ data['Credentials']['SessionToken']}
+#expiry ${ data['Credentials']['Expiration']}`
+
+    // console.log(file_contents);
+    
+
+    // Writing contetns to file
+    writeFile(fullPath, file_contents, (err) => {
+      if (err) console.error(err)
+      process.exit(0);
+    })
+  });
+
   
-
-  const file_contents = `[default]\
-  aws_access_key_id = ${ result['Credentials']['AccessKeyId'] }\
-  aws_secret_access_key = ${ result['Credentials']['SecretAccessKey'] }\
-  aws_session_token = ${ result['Credentials']['SessionToken'] }\
-  #expiry ${ result['Credentials']['Expiration'] }`
-
-  // writeFile(fullPath)
-
-
-  // the *entire* stdout and stderr (buffered)
-  // console.log(stdout);
-  // console.log(`stderr: ${stderr}`);
 });
 
