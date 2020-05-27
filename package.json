@@ -19,5 +19,9 @@
   ],
   "author": "Sotiris Kipouros",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/sotoskip/aws-cli-mfa#readme"
+  "homepage": "https://bitbucket.org/sotoskip/aws-cli-mfa#readme",
+  "dependencies": {
+    "aws-sdk": "^2.684.0",
+    "os": "^0.1.1"
+  }
 }
