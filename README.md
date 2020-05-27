@@ -6,7 +6,7 @@ MFA authentication for aws-cli
 
 ## Features
 
-- Get temporary credentials to use
+- Get temporary credentials to use aws-cli
 - Cross platform
 
 
