@@ -1,6 +1,5 @@
-'use strict';
-const fs = require('fs')
-const meow = require('meow')
+import { writeFileSync } from 'fs'
+import meow from 'meow'
 
 const cli = meow(`
     Usage
@@ -41,5 +40,5 @@ const data = {
 
 console.log(JSON.stringify(data, null, "\t"))
 
-fs.writeFileSync('config.json', JSON.stringify(data, null, "\t"))
+writeFileSync('config.json', JSON.stringify(data, null, "\t"))
 console.log("awc-cli-mfa configured! Ready to use.");

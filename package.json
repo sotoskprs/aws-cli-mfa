@@ -21,7 +21,7 @@
   "author": "Sotiris Kipouros",
   "license": "ISC",
   "bin": {
-    "aws-mfa": "./mfa.js",
+    "aws-mfa": "./bin/mfa.js",
     "aws-mfa-conf": "./config.js"
   },
   "homepage": "https://bitbucket.org/sotoskip/aws-cli-mfa#readme",
