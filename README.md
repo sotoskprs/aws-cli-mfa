@@ -22,22 +22,22 @@ MFA authentication for aws-cli
 
 ### Get started
 
-- Clone repo
-- `cd aws-cli-mfa`
-- `npm i` to install dependencies
-
-
-
-### Run the configuration script
-
-```shell
-$ node config --profile awsprofile --mfa arn:aws:iam::000000000000:mfa/account
+```
+$ npm i -g aws-cli-mfa
 ```
 
-- You will get the the json configuration as a response
 
-```shell
-$ node config --profile awsprofile --mfa arn:aws:iam::000000000000:mfa/account
+
+### Run the configuration script (one time)
+
+```
+$ aws-mfa-conf --profile awsprofile --mfa arn:aws:iam::000000000000:mfa/account
+```
+
+You will get the the json configuration as a response
+
+```
+$ aws-mfa-conf --profile awsprofile --mfa arn:aws:iam::000000000000:mfa/account
 {
   "profile": "awsprofile",
   "mfa_device_arn": "arn:aws:iam::000000000000:mfa/account"
@@ -45,19 +45,21 @@ $ node config --profile awsprofile --mfa arn:aws:iam::000000000000:mfa/account
 awc-cli-mfa configured! Ready to use.
 ```
 
+From now on, you can use `aws-mfa` with the saved configuration
+
 
 
 ### Run MFA script
 
-```shell
-$ node mfa
+```
+$ aws-mfa
 ```
 
-- Enter the generated mfa code from the virtual device
+Enter the generated mfa code from the virtual device
 
-```shell
-$ node mfa
+```
+$ aws-mfa
 MFA code: 123456
 ```
 
-- You 're now authorized to use `aws-cli`!
+You 're now authorized to use `aws-cli`!
