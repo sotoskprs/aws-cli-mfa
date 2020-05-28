@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-const { commandTmpl, commandExec, contentsTmpl, contentsWrite } = require("../lib/mfa")
-const config = require("../config.json")
+const { commandTmpl, commandExec } = require("../lib/mfa-lib")
+const { ourConfigFile } = require('../lib/paths')
+const config = require(ourConfigFile)
 const readline = require("readline")
 const rl = readline.createInterface({
     input: process.stdin,
@@ -17,5 +18,4 @@ rl.question("MFA code: ", function (mfa_code) {
     const command = commandTmpl(commandData)
 
     commandExec(command)
-
 })

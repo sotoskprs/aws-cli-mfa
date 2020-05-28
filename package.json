@@ -22,7 +22,7 @@
   "license": "ISC",
   "bin": {
     "aws-mfa": "./bin/mfa.js",
-    "aws-mfa-conf": "./config.js"
+    "aws-mfa-conf": "./bin/config.js"
   },
   "homepage": "https://bitbucket.org/sotoskip/aws-cli-mfa#readme",
   "dependencies": {
