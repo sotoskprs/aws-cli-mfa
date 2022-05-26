@@ -1,3 +1,6 @@
+![npm](https://img.shields.io/npm/v/aws-cli-mfa?style=for-the-badge)
+
+
 # aws-cli-mfa
 
 MFA authentication for aws-cli
@@ -18,7 +21,7 @@ MFA authentication for aws-cli
 
 
 
-## Use
+## Usage
 
 ### Get started
 
