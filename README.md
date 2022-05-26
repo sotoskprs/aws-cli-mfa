@@ -1,4 +1,4 @@
-![npm](https://img.shields.io/npm/v/aws-cli-mfa?style=for-the-badge) ![npm](https://img.shields.io/npm/dm/aws-cli-mfa?style=for-the-badge) ![Platforms supported](https://img.shields.io/badge/platform-win%20%7C%20MacOS%20%7C%20Linux-lightgrey?style=for-the-badge)
+[![npm](https://img.shields.io/npm/v/aws-cli-mfa?style=for-the-badge)](https://www.npmjs.com/package/aws-cli-mfa) [![npm](https://img.shields.io/npm/dm/aws-cli-mfa?style=for-the-badge)](https://npmcharts.com/compare/aws-cli-mfa?minimal=true) ![Platforms supported](https://img.shields.io/badge/platform-win%20%7C%20MacOS%20%7C%20Linux-lightgrey?style=for-the-badge)
 
 
 # aws-cli-mfa
