@@ -1,4 +1,4 @@
-![npm](https://img.shields.io/npm/v/aws-cli-mfa?style=for-the-badge) ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/sotoskip/aws-cli-mfa?style=for-the-badge)
+![npm](https://img.shields.io/npm/v/aws-cli-mfa?style=for-the-badge) ![npm](https://img.shields.io/npm/dm/aws-cli-mfa?style=for-the-badge) ![Platforms supported](https://img.shields.io/badge/platform-win%20%7C%20MacOS%20%7C%20Linux-lightgrey?style=for-the-badge)
 
 
 # aws-cli-mfa
