@@ -1,6 +1,6 @@
 {
   "name": "aws-cli-mfa",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Two factor authentication for aws-cli",
   "main": "mfa.js",
   "scripts": {
@@ -13,8 +13,7 @@
   },
   "keywords": [
     "aws-cli",
-    "node",
-    "js",
+    "aws",
     "2fa",
     "mfa"
   ],
