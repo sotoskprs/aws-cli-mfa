@@ -1,6 +1,6 @@
 {
   "name": "aws-cli-mfa",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "description": "Two factor authentication for aws-cli",
   "main": "mfa.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/sotoskip/aws-cli-mfa.git"
+    "url": "git+ssh://git@github.com:sotoskprs/aws-cli-mfa.git"
   },
   "keywords": [
     "aws-cli",
@@ -23,7 +23,7 @@
     "aws-mfa": "./bin/mfa.js",
     "aws-mfa-conf": "./bin/config.js"
   },
-  "homepage": "https://bitbucket.org/sotoskip/aws-cli-mfa#readme",
+  "homepage": "https://github.com/sotoskprs/aws-cli-mfa",
   "dependencies": {
     "meow": "^7.0.1",
     "os": "^0.1.1"
